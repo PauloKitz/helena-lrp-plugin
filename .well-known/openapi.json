@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "LRP Care Botpress Plugin",
+    "version": "1.0.0",
+    "description": "Plugin para integrar o agente Helena LRP do Botpress com o ChatGPT"
+  },
+  "servers": [
+    {
+      "url": "https://your-domain.com",
+      "description": "Servidor principal"
+    }
+  ],
+  "paths": {
+    "/api/v1/bots/helena_lrp/converse": {
+      "post": {
+        "operationId": "converseWithHelenaLRP",
+        "description": "Encaminha mensagem do usuário para o Botpress e retorna a resposta",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "description": "Identificador único do usuário"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Texto da mensagem do usuário"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "text"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resposta do Botpress",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reply": {
+                      "type": "string",
+                      "description": "Texto da resposta gerada pelo Botpress"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
